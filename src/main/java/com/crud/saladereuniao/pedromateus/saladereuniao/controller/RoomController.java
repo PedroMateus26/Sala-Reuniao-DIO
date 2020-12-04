@@ -51,7 +51,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> delete(@Valid @PathVariable(value = "id") Long id) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteRoom(@Valid @PathVariable(value = "id") Long id) throws ResourceNotFoundException {
             Room room = roomRespository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("Room not found for this id: " + id));
             roomRespository.delete(room);
