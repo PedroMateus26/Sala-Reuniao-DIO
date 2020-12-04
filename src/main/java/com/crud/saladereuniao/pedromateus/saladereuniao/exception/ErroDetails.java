@@ -1,4 +1,4 @@
-package exception;
+package com.crud.saladereuniao.pedromateus.saladereuniao.exception;
 
 import java.util.Date;
 

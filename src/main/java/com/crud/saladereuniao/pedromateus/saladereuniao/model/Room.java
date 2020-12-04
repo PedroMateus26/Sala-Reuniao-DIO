@@ -1,15 +1,14 @@
-package model;
+package com.crud.saladereuniao.pedromateus.saladereuniao.model;
 
-import lombok.Data;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "meetingroom")
 public class Room {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String date;
@@ -27,7 +26,6 @@ public class Room {
         this.endHour = endHour;
     }
 
-    @Column(name = "id",nullable = false)
     public long getId() {
         return id;
     }
@@ -36,7 +34,6 @@ public class Room {
         this.id = id;
     }
 
-    @Column(name = "name",nullable = false)
     public String getName() {
         return name;
     }
@@ -45,7 +42,6 @@ public class Room {
         this.name = name;
     }
 
-    @Column(name = "date",nullable = false)
     public String getDate() {
         return date;
     }
@@ -54,7 +50,6 @@ public class Room {
         this.date = date;
     }
 
-    @Column(name = "startHour",nullable = false)
     public String getStartHour() {
         return startHour;
     }
@@ -63,13 +58,25 @@ public class Room {
         this.startHour = startHour;
     }
 
-    @Column(name = "endHour",nullable = false)
     public String getEndHour() {
         return endHour;
     }
 
     public void setEndHour(String endHour) {
         this.endHour = endHour;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Room)) return false;
+        Room room = (Room) o;
+        return getId() == room.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 
     @Override
