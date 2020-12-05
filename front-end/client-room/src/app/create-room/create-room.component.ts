@@ -4,11 +4,11 @@ import { Room } from './../Room';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-client-room',
-  templateUrl: './client-room.component.html',
-  styleUrls: ['./client-room.component.css']
+  selector: 'app-create-room',
+  templateUrl: './create-room.component.html',
+  styleUrls: ['./create-room.component.css']
 })
-export class ClientRoomComponent implements OnInit {
+export class CreateRoomComponent implements OnInit {
   room:Room=new Room();
   submitted=false;
 
@@ -24,7 +24,7 @@ export class ClientRoomComponent implements OnInit {
   }
 
   save(){
-    this.roomService.createRooms(this.room)
+    this.roomService.createRoom(this.room)
     .subscribe(
       data=>console.log(data),
       error=>console.log(error)  
@@ -39,7 +39,7 @@ export class ClientRoomComponent implements OnInit {
     this.save();
   }
 
-  getList(){
+  goToList(){
     this.router.navigate(["/rooms"])
   }
 
