@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientRoomComponent implements OnInit {
   room:Room=new Room();
-  subscribe=false;
+  submitted=false;
 
   constructor(private roomService:RoomService,private router:Router) { }
 
@@ -18,14 +18,29 @@ export class ClientRoomComponent implements OnInit {
   }
 
   newRoom():void{
-    this.subscribe=false;
+    this.submitted=false;
     this.room=new Room();
 
   }
 
-  sava(){
-    this.roomService.createRooms(this.room);
-    
+  save(){
+    this.roomService.createRooms(this.room)
+    .subscribe(
+      data=>console.log(data),
+      error=>console.log(error)  
+    )
+    this.room=new Room();
+    this.goToList();
+
+  }
+
+  onSubmit(){
+    this.submitted=true;
+    this.save();
+  }
+
+  getList(){
+    this.router.navigate(["/rooms"])
   }
 
 }
